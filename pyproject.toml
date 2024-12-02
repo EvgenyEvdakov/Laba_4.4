@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "laba-4-4"
+version = "0.1.0"
+description = ""
+authors = ["Evgeni <kkrutkov02@gmail.com>"]
+readme = "README.md"
+packages = [{include = "laba_4"}]
+
+[tool.poetry.dependencies]
+python = "^3.13"
+black = "^24.10.0"
+flake8 = "^7.1.1"
+isort = "^5.13.2"
+mypy = "^1.13.0"
+pre-commit = "^4.0.1"
+pytest = "^8.3.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
