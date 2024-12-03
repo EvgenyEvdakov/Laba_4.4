@@ -11,7 +11,7 @@ python = "^3.12"
 jsonschema = "^4.23.0"
 
 [tool.poetry.dependencies]
-python = "^3.13"
+python = "^3.12"
 black = "^24.10.0"
 flake8 = "^7.1.1"
 isort = "^5.13.2"
@@ -27,7 +27,7 @@ build-backend = "poetry.core.masonry.api"
 where = ["src"]
 
 [tool.black]
-line-length = 88
+line-length = 107
 exclude = '''
 (
     __pycache__
@@ -35,7 +35,7 @@ exclude = '''
 '''
 
 [tool.flake8]
-max-line-length = 108
+max-line-length = 107
 extend-exclude = '__pycache__'
 
 [tool.isort]
@@ -75,7 +75,7 @@ exclude = [
     "site-packages",
     "venv",
 ]
-line-length = 108
+line-length = 107
 indent-width = 4
 
 [tool.ruff.lint]
