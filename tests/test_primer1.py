@@ -39,8 +39,9 @@ def test_add_worker_invalid_year():
 def test_select_workers(staff_with_data):
     """Тестирование выбора сотрудников с заданным стажем."""
     selected = staff_with_data.select(10)
-    assert len(selected) == 1
+    assert len(selected) == 2  # Ожидаем двух сотрудников
     assert selected[0].name == "Иванов И.И."
+    assert selected[1].name == "Петров П.П."
 
 
 def test_save_and_load_workers(temp_file, staff_with_data):
