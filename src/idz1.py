@@ -5,23 +5,21 @@
 # работы с исключениями и логгирование.
 
 from __future__ import annotations
-from typing import List, Dict, Optional
-import json
+
 import argparse
+import json
 import logging
 from pathlib import Path
+from typing import Dict, List, Optional
 
 
 # Настройка логирования
-logging.basicConfig(
-    filename="routes_log.log",
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
-)
+logging.basicConfig(filename="routes_log.log", level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 
 class Route:
     """Класс для представления маршрута."""
+
     def __init__(self, start: str, end: str, number: str):
         self.start = start
         self.end = end
@@ -29,24 +27,17 @@ class Route:
 
     def to_dict(self) -> Dict[str, str]:
         """Преобразование маршрута в словарь для сохранения."""
-        return {
-            "start": self.start,
-            "end": self.end,
-            "number": self.number
-        }
+        return {"start": self.start, "end": self.end, "number": self.number}
 
     @staticmethod
     def from_dict(data: Dict[str, str]) -> Route:
         """Создание маршрута из словаря."""
-        return Route(
-            start=data["start"],
-            end=data["end"],
-            number=data["number"]
-        )
+        return Route(start=data["start"], end=data["end"], number=data["number"])
 
 
 class RouteManager:
     """Класс для управления маршрутами."""
+
     def __init__(self, file_path: Path):
         self.file_path = file_path
         self.routes: List[Route] = self._load_routes()

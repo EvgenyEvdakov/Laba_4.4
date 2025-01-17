@@ -4,19 +4,20 @@
 # необходимо изучить возможности модуля logging. Добавить для предыдущего задания вывод в файлы лога даты
 # и времени выполнения пользовательской команды с точностью до миллисекунды.
 
-import json
 import argparse
-from pathlib import Path
+import json
 import logging
 from datetime import datetime
-from typing import List, Dict, Optional
+from pathlib import Path
+from typing import Dict, List, Optional
+
 
 # Настройка логирования без миллисекунд в формате
 logging.basicConfig(
     filename="routes_log.log",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S"
+    datefmt="%Y-%m-%d %H:%M:%S",
 )
 
 
@@ -40,11 +41,7 @@ class RouteManager:
         if not number.isdigit():
             raise ValueError("Номер маршрута должен быть числом.")
 
-        route = {
-            "start": start,
-            "end": end,
-            "number": number
-        }
+        route = {"start": start, "end": end, "number": number}
         self.routes.append(route)
         Logger.log_with_millis(logging.INFO, f"Добавлен новый маршрут: {route}")
 
@@ -95,9 +92,9 @@ def main() -> None:
     routes = FileManager.load_routes(file_path)
     route_manager = RouteManager(routes)
 
-    parser = argparse.ArgumentParser(description='Управление маршрутами')
-    parser.add_argument('--add', action='store_true', help='Добавить новый маршрут')
-    parser.add_argument('--number', type=str, help='Номер маршрута для поиска')
+    parser = argparse.ArgumentParser(description="Управление маршрутами")
+    parser.add_argument("--add", action="store_true", help="Добавить новый маршрут")
+    parser.add_argument("--number", type=str, help="Номер маршрута для поиска")
 
     args = parser.parse_args()
 
@@ -125,5 +122,5 @@ def main() -> None:
         print(f"Ошибка при сохранении данных: {e}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

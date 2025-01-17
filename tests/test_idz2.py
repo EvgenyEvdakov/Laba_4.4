@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import pytest
 import json
-from pathlib import Path
 import logging
-from idz2 import RouteManager, FileManager, Logger
+from pathlib import Path
+
+import pytest
+
+from idz2 import FileManager, Logger, RouteManager
 
 
 @pytest.fixture
@@ -43,10 +45,9 @@ def test_add_route(temp_file: Path):
 
 def test_find_route(temp_file: Path):
     """Тестирование поиска маршрута."""
-    manager = RouteManager([
-        {"start": "Москва", "end": "Казань", "number": "101"},
-        {"start": "Сочи", "end": "Краснодар", "number": "202"}
-    ])
+    manager = RouteManager(
+        [{"start": "Москва", "end": "Казань", "number": "101"}, {"start": "Сочи", "end": "Краснодар", "number": "202"}]
+    )
     route = manager.find_route("101")
     assert route is not None
     assert route["start"] == "Москва"
@@ -60,7 +61,7 @@ def test_load_routes(temp_file: Path, caplog):
     """Тестирование загрузки маршрутов из файла."""
     data = [
         {"start": "Москва", "end": "Казань", "number": "101"},
-        {"start": "Сочи", "end": "Краснодар", "number": "202"}
+        {"start": "Сочи", "end": "Краснодар", "number": "202"},
     ]
 
     # Сохранение тестовых данных
@@ -95,11 +96,10 @@ def test_load_routes_invalid_json(temp_file: Path, caplog):
     assert routes == []
     assert "Ошибка при чтении JSON файла" in caplog.text
 
+
 def test_save_routes_error(temp_file: Path, caplog):
     """Тестирование обработки ошибок при сохранении маршрутов."""
-    manager = RouteManager([
-        {"start": "Москва", "end": "Казань", "number": "101"}
-    ])
+    manager = RouteManager([{"start": "Москва", "end": "Казань", "number": "101"}])
 
     # Попробуем сохранить в системную директорию, к которой нет прав на запись
     no_write_dir = Path("C:/Windows/System32")
