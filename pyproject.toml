@@ -7,13 +7,14 @@ readme = "README.md"
 packages = [{include = "laba_4"}]
 
 [tool.poetry.dependencies]
-python = "^3.13"
-isort = "^5.13.2"
+python = "^3.10"
 black = "^24.10.0"
 flake8 = "^7.1.1"
-mypy = "^1.14.0"
+isort = "^5.13.2"
+mypy = "^1.13.0"
 pre-commit = "^4.0.1"
 pytest = "^8.3.4"
+flake8-pyproject = "^1.2.3"
 
 
 [build-system]
@@ -45,3 +46,4 @@ exclude = """
 .idea/
 tests/
 doc/
+"""
